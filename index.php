@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//Maga az oldal
 $page = $_GET['page'] ?? 'fooldal';
 
 //Engedélyezett oldalak
