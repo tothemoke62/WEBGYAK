@@ -9,6 +9,7 @@ if (!in_array($page, $allowed)) {
     $page = 'fooldal';
 }
 
+//Megszünteti a munkamenetet és visszairányít a főoldalra
 if ($page === 'kilepes') {
     session_destroy();
     header('Location: index.php?page=fooldal');
