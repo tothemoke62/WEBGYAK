@@ -3,6 +3,7 @@ session_start();
 
 $page = $_GET['page'] ?? 'fooldal';
 
+//Engedélyezett oldalak
 $allowed = ['fooldal', 'kepek', 'kapcsolat', 'uzenetek', 'crud', 'belepes', 'kilepes'];
 if (!in_array($page, $allowed)) {
     $page = 'fooldal';
