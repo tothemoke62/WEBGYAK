@@ -1,16 +1,13 @@
 <?php
-// Munkamenet indítása a bejelentkezéshez
 session_start();
 
-// Adatbázis kapcsolat beolvasása
 include_once 'includes/db.php';
 
-// Változók inicializálása alaphelyzetbe
 $reg_hiba = '';
 $reg_ok = '';
 $login_hiba = '';
 
-// === BEJELENTKEZÉS FELDOLGOZÁSA ===
+//bejelentkezés feldolgozás
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
     $login = trim($_POST['login'] ?? '');
     $jelszo = $_POST['jelszo'] ?? '';
@@ -19,12 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $login_hiba = 'Minden mező kitöltése kötelező!';
     } else {
         $db = getDB();
-        // Lekérdezzük a felhasználót a megadott név alapján
         $stmt = $db->prepare('SELECT * FROM felhasznalok WHERE login = ?');
         $stmt->execute([$login]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Jelszó ellenőrzése (ha létezik a felhasználó)
         if ($user && password_verify($jelszo, $user['jelszo'])) {
             $_SESSION['user'] = [
                 'id' => $user['id'],
@@ -40,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// === REGISZTRÁCIÓ FELDOLGOZÁSA ===
+//regisztráció feldolgozás
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'reg') {
     $vezeteknev = trim($_POST['vezeteknev'] ?? '');
     $keresztnev = trim($_POST['keresztnev'] ?? '');
@@ -49,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $jelszo = $_POST['reg_jelszo'] ?? '';
     $jelszo2 = $_POST['reg_jelszo2'] ?? '';
 
-    // Validációk
     if ($vezeteknev === '' || $keresztnev === '' || $login === '' || $email === '' || $jelszo === '') {
         $reg_hiba = 'Minden mező kitöltése kötelező!';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -60,14 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $reg_hiba = 'A két jelszó nem egyezik!';
     } else {
         $db = getDB();
-        // Ellenőrizzük, hogy foglalt-e a név vagy az email
         $stmt = $db->prepare('SELECT id FROM felhasznalok WHERE login = ? OR email = ?');
         $stmt->execute([$login, $email]);
         
         if ($stmt->fetch()) {
             $reg_hiba = 'Ez a felhasználónév vagy e-mail már foglalt!';
         } else {
-            // Jelszó titkosítása és mentés
             $hash = password_hash($jelszo, PASSWORD_DEFAULT);
             $ins = $db->prepare('INSERT INTO felhasznalok (vezeteknev, keresztnev, login, email, jelszo) VALUES (?, ?, ?, ?, ?)');
             $ins->execute([$vezeteknev, $keresztnev, $login, $email, $hash]);
@@ -161,7 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 </div>
 
 <script>
-// Kliens oldali validáció a bejelentkezéshez
 function validateLogin(e) {
     let ok = true;
     const l = document.getElementById('login');
@@ -187,8 +178,6 @@ function validateLogin(e) {
     
     if (!ok) e.preventDefault();
 }
-
-// Kliens oldali validáció a regisztrációhoz
 function validateReg(e) {
     let ok = true;
     const fields = [
