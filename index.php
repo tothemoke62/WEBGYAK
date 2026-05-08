@@ -1,16 +1,13 @@
 <?php
 session_start();
 
-//Maga az oldal
 $page = $_GET['page'] ?? 'fooldal';
 
-//Engedélyezett oldalak
 $allowed = ['fooldal', 'kepek', 'kapcsolat', 'uzenetek', 'crud', 'belepes', 'kilepes'];
 if (!in_array($page, $allowed)) {
     $page = 'fooldal';
 }
 
-//Megszünteti a munkamenetet és visszairányít a főoldalra
 if ($page === 'kilepes') {
     session_destroy();
     header('Location: index.php?page=fooldal');
