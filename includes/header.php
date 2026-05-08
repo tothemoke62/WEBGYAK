@@ -9,12 +9,13 @@
 </head>
 <body>
 
+<!-- Főoldal header része -->
 <header class="site-header">
     <div class="header-inner">
         <div class="logo">
             <a href="index.php?page=fooldal">
                 <span class="logo-icon">🍕</span>
-                <span class="logo-text">La <em>Fiamma</em></span>
+                <span class="logo-text">La <em>Familia</em></span>
             </a>
         </div>
 
