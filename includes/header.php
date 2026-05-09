@@ -22,7 +22,7 @@
         <?php if (isset($_SESSION['user'])): ?>
         <div class="user-badge">
             Bejelentkezett: 
-            <strong><?= htmlspecialchars($_SESSION['user']['vezeteknev'] . ' ' . $_SESSION['user']['keresztnev'] . ' ' . $_SESSION['user']['login']) ?></strong>
+            <strong><?= htmlspecialchars($_SESSION['user']['vezeteknev'] . ' ' . $_SESSION['user']['keresztnev'] . ' ' . $_SESSION['user'](['login'])) ?></strong>
         </div>
         <?php endif; ?>
 
