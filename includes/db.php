@@ -1,3 +1,4 @@
+<!-- adatbázis kapcsolat -->
 <?php
 function getDB() {
     static $dbh = null;
