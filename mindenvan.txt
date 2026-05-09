@@ -1,0 +1,10 @@
+front-kontroller (index.php)
+Bejelentkezés/Kilépés menü session alapján
+Bejelentkezett felhasználó adatai
+nem lép be automat.
+pdo kapcsolat van
+
+- adatbázis? Működik
+- tárhely? Működik
+- adatokat megjelenít? Igen
+- CRUD működik? Igen
