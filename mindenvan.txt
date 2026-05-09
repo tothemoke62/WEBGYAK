@@ -8,3 +8,5 @@ pdo kapcsolat van
 - tárhely? Működik
 - adatokat megjelenít? Igen
 - CRUD működik? Igen
+
+- Képek működnek? IGEN!!!
