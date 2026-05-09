@@ -1,3 +1,5 @@
+
+<!-- CRUD FÁJL -->
 <?php
 include_once 'includes/db.php';
 $db = getDB();
@@ -5,14 +7,14 @@ $db = getDB();
 $hiba  = '';
 $siker = '';
 
-// töröl
+//torles
 if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['nev'])) {
     $stmt = $db->prepare('DELETE FROM pizza WHERE nev = ?');
     $stmt->execute([$_GET['nev']]);
     $siker = 'Pizza sikeresen törölve!';
 }
 
-// hozzáad
+//hozzaad
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add') {
     $nev           = trim($_POST['nev']           ?? '');
     $kategorianev  = trim($_POST['kategorianev']  ?? '');
@@ -33,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// szerkeszt-ment
+// szerkeszt-mentes
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit') {
     $regi_nev      = trim($_POST['regi_nev']      ?? '');
     $nev           = trim($_POST['nev']           ?? '');
@@ -49,10 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// lekérés
+// Kategóriák lekérése
 $kategoriak = $db->query('SELECT * FROM kategoria ORDER BY nev')->fetchAll(PDO::FETCH_ASSOC);
 
-// Szerkesztés nyitás
+// Szerkesztés megnyitása
 $edit_pizza = null;
 if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['nev'])) {
     $stmt = $db->prepare('SELECT * FROM pizza WHERE nev = ?');
@@ -73,8 +75,7 @@ $pizzak = $db->query('SELECT p.*, k.ar FROM pizza p LEFT JOIN kategoria k ON p.k
 <?php if ($hiba): ?>
     <div class="alert alert-error"><?= htmlspecialchars($hiba) ?></div>
 <?php endif; ?>
-
-<!-- hozzáad + szerkeszt -->
+<!-- HOZZÁADÁS / SZERKESZTÉS FORM -->
 <div class="form-card" style="margin-bottom: 2rem;">
     <h2 class="section-title"><?= $edit_pizza ? 'Pizza szerkesztése' : 'Új pizza hozzáadása' ?></h2>
 
@@ -116,7 +117,7 @@ $pizzak = $db->query('SELECT p.*, k.ar FROM pizza p LEFT JOIN kategoria k ON p.k
     </form>
 </div>
 
-<!-- lista -->
+<!-- PIZZA LISTA -->
 <div class="table-wrap">
     <table>
         <thead>
@@ -134,7 +135,7 @@ $pizzak = $db->query('SELECT p.*, k.ar FROM pizza p LEFT JOIN kategoria k ON p.k
                 <td><?= htmlspecialchars($p['nev']) ?></td>
                 <td><?= htmlspecialchars($p['kategorianev']) ?></td>
                 <td><?= $p['ar'] ?> Ft</td>
-                <td><?= $p['vegetarianus'] ? '🌿 Igen' : '🍖 Nem' ?></td>
+                <td><?= $p['vegetarianus'] ? 'Igen' : 'Nem' ?></td>
                 <td>
                     <div class="action-btns">
                         <a href="index.php?page=crud&action=edit&nev=<?= urlencode($p['nev']) ?>" 
