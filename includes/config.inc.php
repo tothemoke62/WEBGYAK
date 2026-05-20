@@ -32,9 +32,9 @@ function getDB() {
     if ($dbh === null) {
         try {
             $dbh = new PDO(
-                'mysql:host=mysql.omega;dbname=IDE_AZ_ADATBAZISNEV;charset=utf8',
-                'IDE_A_FELHASZNALONEV',
-                'IDE_A_JELSZO',
+                'mysql:host=mysql.omega;dbname=adat1;charset=utf8',
+                'adat1',
+                'NakamuraHaru22',
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
             );
         } catch (PDOException $e) {
