@@ -1,15 +1,7 @@
 <?php
+echo "index mukodik";
 session_start();
+echo "session ok";
 include("./includes/config.inc.php");
-
-$keres = null;
-$url = isset($_GET['page']) ? $_GET['page'] : '/';
-
-if(array_key_exists($url, $oldalak)) {
-    $keres = $oldalak[$url];
-} else {
-    $keres = $hiba_oldal;
-}
-
-include("./templates/index.tpl.php");
+echo "config ok";
 ?>
