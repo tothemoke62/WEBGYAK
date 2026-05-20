@@ -3,7 +3,7 @@ if(isset($_POST['felhasznalo']) && isset($_POST['jelszo']) && isset($_POST['veze
     try {
         $dbh = getDB();
         
-        // Létezik már a felhasználói név?
+        
         $sqlSelect = "SELECT id FROM felhasznalok WHERE login = :login";
         $sth = $dbh->prepare($sqlSelect);
         $sth->execute(array(':login' => $_POST['felhasznalo']));
