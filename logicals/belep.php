@@ -3,15 +3,15 @@ if(isset($_POST['felhasznalo']) && isset($_POST['jelszo'])) {
     try {
         $dbh = getDB();
         
-        $sqlSelect = "SELECT id, csaladi_nev, uto_nev FROM felhasznalok WHERE login = :login AND jelszo = :jelszo";
+        $sqlSelect = "SELECT id, vezeteknev, keresztnev, login, jelszo FROM felhasznalok WHERE login = :login";
         $sth = $dbh->prepare($sqlSelect);
-        $sth->execute(array(':login' => $_POST['felhasznalo'], ':jelszo' => password_hash($_POST['jelszo'], PASSWORD_DEFAULT)));
+        $sth->execute(array(':login' => $_POST['felhasznalo']));
         $row = $sth->fetch(PDO::FETCH_ASSOC);
         
-        if($row) {
+        if($row && password_verify($_POST['jelszo'], $row['jelszo'])) {
             $_SESSION['csn'] = $row['vezeteknev'];
-            $_SESSION['un'] = $row['keresztnev'];
-            $_SESSION['login'] = $_POST['felhasznalo'];
+            $_SESSION['un']  = $row['keresztnev'];
+            $_SESSION['login'] = $row['login'];
         }
     }
     catch (PDOException $e) {
