@@ -5,6 +5,13 @@
     <a href="index.php?page=crud" class="hero-btn">Pizzáink megtekintése →</a>
 </section>
 
+<section class="hero">
+    <p class="hero-eyebrow">Budapest szíve óta 1987</p>
+    <h1>Az igazi <em>olasz</em><br>pizza élménye</h1>
+    <p>Friss alapanyagok, hagyományos kemencés sütés, szenvedéllyel készítve – minden egyes nap.</p>
+    <a href="index.php?page=crud" class="hero-btn">Pizzáink megtekintése →</a>
+</section>
+
 <h2 class="section-title">Miért minket válasszon?</h2>
 <div class="card-grid">
     <div class="card">
@@ -60,7 +67,7 @@
 </div>
 
 <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: -2rem; margin-bottom: 3rem;">
-    1234 Budapest, Pizza utca 1. &nbsp;|&nbsp;
-    +36 1 234 5678 &nbsp;|&nbsp;
-    H-V: 11:00 – 22:00
+    📍 1234 Budapest, Pizza utca 1. &nbsp;|&nbsp;
+    ☎ +36 1 234 5678 &nbsp;|&nbsp;
+    🕐 H-V: 11:00 – 22:00
 </p>
