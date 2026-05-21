@@ -8,22 +8,22 @@
 <h2 class="section-title">Miért minket válasszon?</h2>
 <div class="card-grid">
     <div class="card">
-        <div class="card-icon">🔥</div>
+        <div class="card-icon">:fire:</div>
         <h3>Fatüzelésű kemence</h3>
         <p>Hagyományos nápolyi kemencénkben 90 másodperc alatt sül át a tökéletes pizza.</p>
     </div>
     <div class="card">
-        <div class="card-icon">🌿</div>
+        <div class="card-icon">:herb:</div>
         <h3>Friss alapanyagok</h3>
         <p>Naponta érkező zöldségek, prémium olasz sajt és eredeti San Marzano paradicsom.</p>
     </div>
     <div class="card">
-        <div class="card-icon">🚴</div>
+        <div class="card-icon">:bike:</div>
         <h3>Gyors kiszállítás</h3>
         <p>30 percen belül a küszöbödön, vagy a következő rendelés ingyenes!</p>
     </div>
     <div class="card">
-        <div class="card-icon">⭐</div>
+        <div class="card-icon">:star:</div>
         <h3>35+ év tapasztalat</h3>
         <p>Családi recept, generációkon átívelő szenvedély és több ezer elégedett vendég.</p>
     </div>
