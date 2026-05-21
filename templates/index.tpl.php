@@ -1,4 +1,5 @@
-<?php if(isset($keres) && file_exists('./logicals/'.$keres['fajl'].'.php')) { include("./logicals/{$keres['fajl']}.php"); } ?>
+<?php if(isset($keres) && file_exists(__DIR__."/logicals/".$keres['fajl'].'.php')) { include(__DIR__."/logicals/{$keres['fajl']}.php"); } ?>
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -44,7 +45,7 @@
 </header>
 
 <main class="site-main">
-    <?php include("./templates/pages/{$keres['fajl']}.tpl.php"); ?>
+    <?php include(__DIR__."/pages/{$keres['fajl']}.tpl.php"); ?>
 </main>
 
 <footer class="site-footer">
