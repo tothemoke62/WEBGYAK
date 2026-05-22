@@ -2,9 +2,15 @@
 $dbh = getDB();
 
 if(isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['nev'])) {
-    $stmt = $dbh->prepare('DELETE FROM pizza WHERE nev = ?');
-    $stmt->execute([$_GET['nev']]);
-    $crud_siker = 'Pizza sikeresen törölve!';
+    try {
+        $stmt = $dbh->prepare('DELETE FROM rendeles WHERE pizzanev = ?');
+        $stmt->execute([$_GET['nev']]);
+        $stmt = $dbh->prepare('DELETE FROM pizza WHERE nev = ?');
+        $stmt->execute([$_GET['nev']]);
+        $crud_siker = 'Pizza sikeresen törölve!';
+    } catch(PDOException $e) {
+        $crud_hiba = 'Törlés sikertelen: ' . $e->getMessage();
+    }
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
